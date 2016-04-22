@@ -1,4 +1,4 @@
-package com.sxk.common;
+package com.sxk.common.utils;
 
 /**
  * 

@@ -1,4 +1,4 @@
-package com.sxk.common;
+package com.sxk.common.utils;
 /**
  * @description 图片工具类
  * @author sxk
