@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 public class ResourceUtil {
     public static final String          LOCAL_CLINET_USER = "LOCAL_CLINET_USER";
 
-    private static final ResourceBundle bundle            = ResourceBundle.getBundle("sysConfig");
+    private static final ResourceBundle bundle            = ResourceBundle.getBundle("conf/config");
     public final static boolean         fuzzySearch       = ResourceUtil.isFuzzySearch();
 
     /**
@@ -112,5 +112,10 @@ public class ResourceUtil {
 
     public static boolean isFuzzySearch() {
         return "1".equals(bundle.getString("fuzzySearch"));
+    }
+
+    public static void main(String[] args) {
+        System.out.println(bundle.getString("randCodeType"));
+        System.out.println(bundle.getString("mail.smtpHost"));
     }
 }
