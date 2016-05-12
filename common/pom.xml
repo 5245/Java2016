@@ -107,6 +107,14 @@
 			<artifactId>jedis</artifactId>
 			<version>2.8.1</version>
 		</dependency>
+		
+		
+		<!-- graphicMagic  im4Java -->
+		<dependency>
+			<groupId>org.im4java</groupId>
+			<artifactId>im4java</artifactId>
+			<version>1.4.0</version>
+		</dependency>
 		<!-- -spring- -->
 		<!-- -->
 		<dependency>
