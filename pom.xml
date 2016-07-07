@@ -8,5 +8,6 @@
 	<modules>
 		<module>common</module>
 		<module>demo-web</module>
+		<module>validator</module>
 	</modules>
 </project>

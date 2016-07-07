@@ -1,14 +1,14 @@
 package com.sxk.common.utils;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.util.Random;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -20,8 +20,14 @@ import com.alibaba.fastjson.JSONObject;
  * @date 2016年5月10日
  */
 public class IpUtil {
+
+    private static final Logger logger           = LoggerFactory.getLogger(IpUtil.class);
+    private static final String IP_INFO_URL      = "http://ip.taobao.com/service/getIpInfo.php?ip=";
+    private static final String COMMON_SEPARATOR = " ";
+    private static final String IP_SEPARATOR     = ".";
+
     public static String getRandomIp() {
-        //ip范围
+        //ip范围 
         int[][] range = { { 607649792, 608174079 },//36.56.0.0-36.63.255.255
                 { 1038614528, 1039007743 },//61.232.0.0-61.237.255.255
                 { 1783627776, 1784676351 },//106.80.0.0-106.95.255.255
@@ -43,31 +49,31 @@ public class IpUtil {
     /*
      * 将十进制转换成ip地址
      */
-    public static String num2ip(int ip) {
+    private static String num2ip(int ip) {
         int[] b = new int[4];
-        String x = "";
+        StringBuffer sb = new StringBuffer();
 
         b[0] = (int) ((ip >> 24) & 0xff);
         b[1] = (int) ((ip >> 16) & 0xff);
         b[2] = (int) ((ip >> 8) & 0xff);
         b[3] = (int) (ip & 0xff);
-        x = Integer.toString(b[0]) + "." + Integer.toString(b[1]) + "." + Integer.toString(b[2]) + "." + Integer.toString(b[3]);
-        return x;
+        sb.append(Integer.toString(b[0]) + IP_SEPARATOR);
+        sb.append(Integer.toString(b[1]) + IP_SEPARATOR);
+        sb.append(Integer.toString(b[2]) + IP_SEPARATOR);
+        sb.append(Integer.toString(b[3]));
+        return sb.toString();
     }
 
     /**
-     * 通过IP获取地址(需要联网，调用淘宝的IP库)
+     * 通过IP获取地址(需要联网，调用IP库)
      * 
      * @param ip
      * @return
      */
     public static String getIpInfo(String ip) {
-        if (ip.equals("本地")) {
-            ip = "127.0.0.1";
-        }
-        String info = "";
+        String info = null;
         try {
-            URL url = new URL("http://ip.taobao.com/service/getIpInfo.php?ip=" + ip);
+            URL url = new URL(IP_INFO_URL + ip);
             HttpURLConnection htpcon = (HttpURLConnection) url.openConnection();
             htpcon.setRequestMethod("GET");
             htpcon.setDoOutput(true);
@@ -83,26 +89,37 @@ public class IpUtil {
                 line = bufferedReader.readLine();
             }
             bufferedReader.close();
-            JSONObject obj = (JSONObject) JSON.parse(temp.toString());
-            if (obj.getIntValue("code") == 0) {
-                JSONObject data = obj.getJSONObject("data");
-                info += data.getString("country") + " ";
-                info += data.getString("region") + " ";
-                info += data.getString("city") + " ";
-                info += data.getString("isp");
-            }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (ProtocolException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+
+            info = parseIpInfo(temp.toString());
+        } catch (Exception e) {
+            logger.error("ip:{},error:{}", ip, e);
         }
         return info;
     }
 
+    public static String parseIpInfo(String res) {
+        try {
+            System.out.println(res);
+            JSONObject result = (JSONObject) JSON.parse(res);
+            if (result.getIntValue("code") == 0) {
+                JSONObject data = result.getJSONObject("data");
+                if (null != data) {
+                    StringBuffer sb = new StringBuffer();
+                    sb.append(data.getString("country") + COMMON_SEPARATOR);
+                    sb.append(data.getString("region") + COMMON_SEPARATOR);
+                    sb.append(data.getString("city") + COMMON_SEPARATOR);
+                    sb.append(data.getString("isp") + COMMON_SEPARATOR);
+                    return sb.toString();
+                }
+            }
+        } catch (Exception e) {
+            logger.error("info:{},error:{}", res, e);
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
-        String ip=getRandomIp();
+        String ip = getRandomIp();
         System.out.println(ip);
         System.out.println(getIpInfo(ip));
     }

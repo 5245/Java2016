@@ -46,9 +46,9 @@ import ch.qos.logback.core.util.StatusPrinter;
  */
 public class HttpAsyncUtil {
 
-    private final static Logger                        logger                 = LoggerFactory.getLogger(HttpAsyncUtil.class);
+    private static final Logger                        logger                 = LoggerFactory.getLogger(HttpAsyncUtil.class);
 
-    private final static String                        DEFAULT_CHARSET        = "UTF-8";
+    private static final String                        DEFAULT_CHARSET        = "UTF-8";
 
     private static final String                        URL_PARAM_CONNECT_FLAG = "&";
 
