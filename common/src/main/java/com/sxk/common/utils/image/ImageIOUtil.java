@@ -26,7 +26,7 @@ import javax.imageio.stream.ImageInputStream;
 
 public class ImageIOUtil {
 
-    public static String DEFAULT_IMAGE_FORMAT = "jpg";
+    public static final String DEFAULT_IMAGE_FORMAT = "jpg";
 
     /** 
      * 对图片裁剪，并把裁剪新图片保存 
