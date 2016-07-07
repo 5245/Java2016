@@ -8,11 +8,11 @@
 	</parent>
 	<groupId>com.sxk.common</groupId>
 	<artifactId>common</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.7</java.version>
-		<jersey.version>2.22.1</jersey.version>
 		<spring.version>4.1.6.RELEASE</spring.version>
 	</properties>
 
