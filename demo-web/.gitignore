@@ -1,1 +1,6 @@
+/.externalToolBuilders
+/.project
+/.classpath
+/.settings/
 /target/
+.gitreview

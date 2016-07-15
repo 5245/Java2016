@@ -34,13 +34,11 @@ import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * @description async http pool util 
- * @author sxk
- * @date 2016年7月6日
- *
- */
-public class HttpAsyncUtil {
+import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.classic.joran.JoranConfigurator;
+import ch.qos.logback.core.util.StatusPrinter;
+
+public class HttpAsyncUtilTest {
 
     private static final Logger                        logger                 = LoggerFactory.getLogger(HttpAsyncUtil.class);
 
@@ -61,6 +59,7 @@ public class HttpAsyncUtil {
     private static boolean                             isKeepAlive            = true;
 
     static {
+        initLog();
         try {
             IOReactorConfig.Builder iorcBuilder = IOReactorConfig.custom();
             iorcBuilder.setConnectTimeout(connectionTimeOut);
@@ -86,6 +85,20 @@ public class HttpAsyncUtil {
         } catch (Exception e) {
             logger.error("httpAsyncUtil init fail", e);
         }
+    }
+
+    //logback 日志配置初始化，避免打印垃圾日志
+    private static void initLog() {
+        LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
+        lc.reset();
+        JoranConfigurator configurator = new JoranConfigurator();
+        configurator.setContext(lc);
+        try {
+            configurator.doConfigure("src/main/resources/conf/logback.xml");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        StatusPrinter.printInCaseOfErrorsOrWarnings(lc);
     }
 
     //url校验

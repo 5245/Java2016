@@ -31,10 +31,6 @@ import org.apache.http.HttpStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ch.qos.logback.classic.LoggerContext;
-import ch.qos.logback.classic.joran.JoranConfigurator;
-import ch.qos.logback.core.util.StatusPrinter;
-
 /**
  * @description sync http pool util 
  * @author sxk
@@ -62,27 +58,12 @@ public class HttpUtil {
     private static HttpClient                         httpClient;
 
     static {
-        initLog();
         connectionManager = new MultiThreadedHttpConnectionManager();
         connectionManager.getParams().setConnectionTimeout(connectionTimeOut);
         connectionManager.getParams().setSoTimeout(socketTimeOut);
         connectionManager.getParams().setDefaultMaxConnectionsPerHost(maxConnectionPerHost);
         connectionManager.getParams().setMaxTotalConnections(maxTotalConnections);
         httpClient = new HttpClient(connectionManager);
-    }
-
-    //logback 日志配置初始化，避免打印垃圾日志
-    private static void initLog() {
-        LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
-        lc.reset();
-        JoranConfigurator configurator = new JoranConfigurator();
-        configurator.setContext(lc);
-        try {
-            configurator.doConfigure("src/main/resources/conf/logback.xml");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        StatusPrinter.printInCaseOfErrorsOrWarnings(lc);
     }
 
     public static String urlEncode(String str, String charset) {

@@ -1,5 +1,7 @@
 package com.sxk.web.exception;
 
+import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+
 import com.sxk.web.msg.ResponseInfoEnum;
 
 public class BaseRestException extends RuntimeException {
@@ -44,7 +46,7 @@ public class BaseRestException extends RuntimeException {
 
     @Override
     public String toString() {
-        return "BaseRestException [errcode=" + errcode + ", msg=" + msg + "]";
+        return ReflectionToStringBuilder.toString(this);
     }
 
 }
