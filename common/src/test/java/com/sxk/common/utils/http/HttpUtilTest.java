@@ -10,9 +10,9 @@ import java.util.Map;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import org.apache.commons.httpclient.HttpStatus;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
 import org.apache.http.ParseException;
 import org.apache.http.client.config.RequestConfig;
@@ -299,6 +299,14 @@ public class HttpUtilTest {
         return upload(url, null, null, files, null, 0);
     }
 
+    public static String upload(String url, Map<String, String> params, Map<String, File> files) {
+        return upload(url, params, null, files, null, 0);
+    }
+
+    public static String upload(String url, Map<String, String> params, Map<String, String> headers, Map<String, File> files) {
+        return upload(url, params, headers, files, null, 0);
+    }
+
     public static String upload(String url, Map<String, String> params, Map<String, String> headers, Map<String, File> files, String charset,
             int timeout) {
         HttpResponse httpResponse = upload2Response(url, params, headers, files, charset, timeout);
@@ -396,7 +404,7 @@ public class HttpUtilTest {
         Lock lock = new ReentrantLock();
         lock.lock();
         try {
-            String res = HttpUtilTest.get("http://www.baidu.com");
+            String res = HttpUtilTest.get("https://www.baidu.com");
             System.out.println(res);
         } finally {
             lock.unlock();

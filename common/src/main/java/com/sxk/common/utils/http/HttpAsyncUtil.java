@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.httpclient.HttpStatus;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
 import org.apache.http.ParseException;
 import org.apache.http.client.config.RequestConfig;
@@ -282,6 +282,14 @@ public class HttpAsyncUtil {
 
     public static String upload(String url, Map<String, File> files) {
         return upload(url, null, null, files, null, 0);
+    }
+
+    public static String upload(String url, Map<String, String> params, Map<String, File> files) {
+        return upload(url, params, null, files, null, 0);
+    }
+
+    public static String upload(String url, Map<String, String> params, Map<String, String> headers, Map<String, File> files) {
+        return upload(url, params, headers, files, null, 0);
     }
 
     public static String upload(String url, Map<String, String> params, Map<String, String> headers, Map<String, File> files, String charset,

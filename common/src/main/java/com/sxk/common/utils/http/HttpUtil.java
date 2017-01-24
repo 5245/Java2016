@@ -1,4 +1,4 @@
-package com.sxk.common.utils.http;
+/*package com.sxk.common.utils.http;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -31,11 +31,11 @@ import org.apache.http.HttpStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
+*//**
  * @description sync http pool util 
  * @author sxk
  * @date 2016年7月6日
- */
+ *//*
 public class HttpUtil {
 
     private static final Logger                       logger                 = LoggerFactory.getLogger(HttpAsyncUtil.class);
@@ -97,14 +97,14 @@ public class HttpUtil {
         return post(url, params, null, charset, timeout);
     }
 
-    /**
+    *//**
      * @param url
      * @param params
      * @param headers
      * @param charset
      * @param timeout 0 就是默认值
      * @return
-     */
+     *//*
     public static String post(String url, Map<String, String> params, Map<String, String> headers, String charset, int timeout) {
         if (!verifyUrl(url)) {
             return null;
@@ -217,7 +217,7 @@ public class HttpUtil {
         return get(url, params, headers, charset, timeout, null, 0);
     }
 
-    /**
+    *//**
      * @param url
      * @param params
      * @param headers
@@ -227,7 +227,7 @@ public class HttpUtil {
      * @param proxyPort
      * @return
      *
-     */
+     *//*
     public static String get(String url, Map<String, String> params, Map<String, String> headers, String charset, int timeout, String proxyHost,
             int proxyPort) {
         if (!verifyUrl(url)) {
@@ -299,14 +299,14 @@ public class HttpUtil {
         return upload(url, params, headers, files, DEFAULT_CHARSET);
     }
 
-    /**
+    *//**
      * @param url
      * @param params
      * @param headers
      * @param files
      * @param charset
      *
-     */
+     *//*
     public static String upload(String url, Map<String, String> params, Map<String, String> headers, List<FilePart> files, String charset) {
         if (!verifyUrl(url)) {
             return null;
@@ -349,10 +349,10 @@ public class HttpUtil {
     }
 
     //DOWNLOAD
-    /**
+    *//**
      * @param url
      * @return
-     */
+     *//*
     public static File download(String url) {
         if (!verifyUrl(url)) {
             return null;
@@ -406,3 +406,4 @@ public class HttpUtil {
     }
 
 }
+*/

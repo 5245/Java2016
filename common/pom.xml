@@ -269,16 +269,16 @@
 			<version>1.4.0</version>
 		</dependency>
 
-		<!-- http client support -->
+		<!-- http client support commons-httpclient 的升级版本-->
+		<!-- <dependency>
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+			<version>3.1</version>
+		</dependency> -->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 			<version>4.3.6</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-httpclient</groupId>
-			<artifactId>commons-httpclient</artifactId>
-			<version>3.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
@@ -297,10 +297,17 @@
 		</dependency>
 
 		<dependency>
+			<groupId>com.sun.mail</groupId>
+    		<artifactId>javax.mail</artifactId>
+			<version>1.5.5</version>
+    	</dependency>
+
+		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>javax.mail-api</artifactId>
-			<version>1.5.3</version>
+			<version>1.5.5</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
