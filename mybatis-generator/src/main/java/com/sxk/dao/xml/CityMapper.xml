@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sxk.dao.mapper.CityMapper" >
+  <resultMap id="BaseResultMap" type="com.sxk.model.City" >
+    <id column="city_id" property="cityId" jdbcType="BIGINT" />
+    <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+    <result column="zip_code" property="zipCode" jdbcType="VARCHAR" />
+    <result column="province_id" property="provinceId" jdbcType="BIGINT" />
+    <result column="city_name_en" property="cityNameEn" jdbcType="VARCHAR" />
+    <result column="is_hot" property="isHot" jdbcType="SMALLINT" />
+    <result column="sort_order" property="order" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    city_id, city_name, zip_code, province_id, city_name_en, is_hot, sort_order
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from city
+    where city_id = #{cityId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from city
+    where city_id = #{cityId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.sxk.model.City" >
+    insert into city (city_id, city_name, zip_code, 
+      province_id, city_name_en, is_hot, 
+      sort_order)
+    values (#{cityId,jdbcType=BIGINT}, #{cityName,jdbcType=VARCHAR}, #{zipCode,jdbcType=VARCHAR}, 
+      #{provinceId,jdbcType=BIGINT}, #{cityNameEn,jdbcType=VARCHAR}, #{isHot,jdbcType=SMALLINT}, 
+      #{order,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sxk.model.City" >
+    insert into city
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="cityName != null" >
+        city_name,
+      </if>
+      <if test="zipCode != null" >
+        zip_code,
+      </if>
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+      <if test="cityNameEn != null" >
+        city_name_en,
+      </if>
+      <if test="isHot != null" >
+        is_hot,
+      </if>
+      <if test="order != null" >
+        sort_order,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cityId != null" >
+        #{cityId,jdbcType=BIGINT},
+      </if>
+      <if test="cityName != null" >
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="cityNameEn != null" >
+        #{cityNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="isHot != null" >
+        #{isHot,jdbcType=SMALLINT},
+      </if>
+      <if test="order != null" >
+        #{order,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sxk.model.City" >
+    update city
+    <set >
+      <if test="cityName != null" >
+        city_name = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        zip_code = #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null" >
+        province_id = #{provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="cityNameEn != null" >
+        city_name_en = #{cityNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="isHot != null" >
+        is_hot = #{isHot,jdbcType=SMALLINT},
+      </if>
+      <if test="order != null" >
+        sort_order = #{order,jdbcType=INTEGER},
+      </if>
+    </set>
+    where city_id = #{cityId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sxk.model.City" >
+    update city
+    set city_name = #{cityName,jdbcType=VARCHAR},
+      zip_code = #{zipCode,jdbcType=VARCHAR},
+      province_id = #{provinceId,jdbcType=BIGINT},
+      city_name_en = #{cityNameEn,jdbcType=VARCHAR},
+      is_hot = #{isHot,jdbcType=SMALLINT},
+      sort_order = #{order,jdbcType=INTEGER}
+    where city_id = #{cityId,jdbcType=BIGINT}
+  </update>
+</mapper>
