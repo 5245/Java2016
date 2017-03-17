@@ -8,6 +8,18 @@
 	<modules>
 		<module>common</module>
 		<module>demo-web</module>
+		<module>mybatis-generator</module>
+		<module>mybatis-generator</module>
 		<module>validator</module>
+		<module>interview-web</module>
 	</modules>
+	<properties>
+		<java.version>1.7</java.version>
+		<resource.delimiter>@</resource.delimiter>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.compiler.source>${java.version}</maven.compiler.source>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
+		<spring.version>4.3.2.RELEASE</spring.version>
+	</properties>
 </project>
