@@ -1,11 +1,13 @@
 package com.sxk.common.utils;
 
+import java.util.Random;
+
 /**
 算数运算符、关系运算符、逻辑运算符、位运算符。
 算数运算符(9)：+  -  *  /  %  ++  --
 关系运算符(6)：==  !=  >  >=  <  <=
 逻辑运算符(6)：&&  ||  !  ^  &  |
-位运算符(7)：&  |  ~  ^  >>  <<  >>>
+位运算符(7)：&  |  ~  ^(异或)   >>  <<  >>>
 -------------------------------------------------------------------------
 Java基本数据类型：
 数值类型：
@@ -105,5 +107,13 @@ public class OperatorUtils {
         int b = 6; //y等于二进制数的00000110
         int c = a & b; //z等于二进制数的00000110
         System.out.println(c);
+        long seed = "weiying_2000000009".hashCode() ^ System.nanoTime();
+        Random r = new Random(seed);
+        System.out.println(seed);
+        for (int i = 0; i < 10; i++) {
+            int rondom = r.nextInt(900000) + 100000;
+            System.out.println(rondom);
+        }
+
     }
 }
