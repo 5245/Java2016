@@ -46,6 +46,11 @@ public class DateTest extends DateUtils {
         return date == null ? null : DateFormatUtils.format(date, pattern);
     }
 
+    //线程不安全，入参不一样，返回的可能一样
+    public static String format5(Date date) {
+        return date == null ? null : dateFormat2.format(date);
+    }
+
     /**
      * 用threadLocal来保证局部变量的线程安全
      * @param str
@@ -66,7 +71,6 @@ public class DateTest extends DateUtils {
      * 存在线程安全
      * @param str
      * @return
-     *
      */
     public static Date parseDate2(String str) {
         try {
@@ -93,17 +97,40 @@ public class DateTest extends DateUtils {
         }
     }
 
-    private static class TestClient extends Thread {
-        private DateTest dt;
-        private String   dateStr;
+    /**
+     * @description  测试线程安全问题，线程不安全，入参不一样，返回的确一样
+     * @author sxk
+     * @email sxk5245@126.com
+     * @date 2017年3月28日
+     */
+    private static class TestClient2 extends Thread {
+        private Date date;
 
-        public TestClient(DateTest dt, String dateStr) {
-            this.dt = dt;
+        public TestClient2(Date date) {
+            this.date = date;
+        }
+
+        public void run() {
+            System.out.println(Thread.currentThread().getName() + " : " + DateTest.format5(date));
+        }
+    }
+
+    /**
+     * 
+     * @description 线程不安全 直接报错：java.lang.NumberFormatException: multiple points
+     * @author sxk
+     * @email sxk5245@126.com
+     * @date 2017年3月28日
+     */
+    private static class TestClient extends Thread {
+        private String dateStr;
+
+        public TestClient(String dateStr) {
             this.dateStr = dateStr;
         }
 
         public void run() {
-            System.out.println(Thread.currentThread().getName() + " : " + dt.parseDate2(dateStr));
+            System.out.println(Thread.currentThread().getName() + " : " + DateTest.parseDate2(dateStr));
         }
     }
 
@@ -111,10 +138,10 @@ public class DateTest extends DateUtils {
         DateTest dt = new DateTest();
         long start1 = System.nanoTime();
         long start2 = System.currentTimeMillis();
-        //dt.testMulitiThread();
+        dt.testMulitiThread();
         //dt.testThreadLocalEfficiency();
 
-        dt.testDTEfficiency();
+        //dt.testDTEfficiency();
         System.out.println("nanoTime    " + (System.nanoTime() - start1));
         System.out.println("currentTime " + (System.currentTimeMillis() - start2));
     }
@@ -123,12 +150,23 @@ public class DateTest extends DateUtils {
      * 测试多线程下 局部变量SimpleDateFormat的安全性
      *
      */
+    private void testMulitiThread2() {
+        DateTest dt = new DateTest();
+        // ③ 3个线程共享sn，各自产生序列号  
+        TestClient2 t1 = new TestClient2(DateTest.parseDate("2016-01-01 10:59:11"));
+        TestClient2 t2 = new TestClient2(DateTest.parseDate("2016-01-01 10:59:22"));
+        TestClient2 t3 = new TestClient2(DateTest.parseDate("2016-01-01 10:59:33"));
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+
     private void testMulitiThread() {
         DateTest dt = new DateTest();
         // ③ 3个线程共享sn，各自产生序列号  
-        TestClient t1 = new TestClient(dt, "2016-01-01 10:59:11");
-        TestClient t2 = new TestClient(dt, "2016-01-01 10:59:22");
-        TestClient t3 = new TestClient(dt, "2016-01-01 10:59:33");
+        TestClient t1 = new TestClient("2016-01-01 10:59:11");
+        TestClient t2 = new TestClient("2016-01-01 10:59:22");
+        TestClient t3 = new TestClient("2016-01-01 10:59:33");
         t1.start();
         t2.start();
         t3.start();
