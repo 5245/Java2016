@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-12-23 16:36:07 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.dangdang.model.PassportDeliveryAddress" table="passport_delivery_address" catalog="wp4show" optimistic-lock="version">
+        <id name="id" type="string">
+            <column name="id" length="32" />
+            <generator class="assigned" />
+        </id>
+        <property name="passportUserId" type="string">
+            <column name="passport_user_id" length="32" />
+        </property>
+        <property name="provinceId" type="java.lang.Long">
+            <column name="province_id" />
+        </property>
+        <property name="cityId" type="java.lang.Long">
+            <column name="city_id" />
+        </property>
+        <property name="districtId" type="java.lang.Long">
+            <column name="district_id" />
+        </property>
+        <property name="postCode" type="string">
+            <column name="post_code" length="20" />
+        </property>
+        <property name="receiveDeliveryPerson" type="string">
+            <column name="receive_delivery_person" length="20" />
+        </property>
+        <property name="receiveDeliveryMobile" type="string">
+            <column name="receive_delivery_mobile" length="20" />
+        </property>
+        <property name="isDefault" type="java.lang.Boolean">
+            <column name="is_default" />
+        </property>
+        <property name="isVisible" type="java.lang.Boolean">
+            <column name="is_visible" />
+        </property>
+        <property name="deliveryAddress" type="string">
+            <column name="delivery_address" />
+        </property>
+        <property name="createTime" type="int">
+            <column name="create_time" not-null="true">
+                <comment>&#188;&#199;&#194;&#188;&#204;&#237;&#188;&#211;&#202;&#177;&#188;&#228;&#180;&#193;</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

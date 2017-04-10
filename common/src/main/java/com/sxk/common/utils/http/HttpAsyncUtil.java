@@ -52,17 +52,25 @@ public class HttpAsyncUtil {
     private static PoolingNHttpClientConnectionManager connectionManager      = null;
     private static CloseableHttpAsyncClient            httpAsyncClient;
 
-    private static int                                 connectionTimeOut      = 60000;
-    private static int                                 socketTimeOut          = 180000;
-    private static int                                 connReqTimeout         = 120000;
+    private static int                                 connectionTimeOut      = 1000;
+    private static int                                 socketTimeOut          = 1000;
+    private static int                                 connReqTimeout         = 1000;
     private static int                                 maxTotal               = 50;
     private static int                                 defaultMaxPerRoute     = 50;
     private static int                                 ioThreadCount          = Runtime.getRuntime().availableProcessors();
     private static boolean                             isKeepAlive            = true;
 
+    /**
+     *默认情况下i/o选择间隔设置为1000毫秒,因此粒度的套接字超时默认是1秒。
+     *一个可以减少选择间隔,使i/o选择器线程遍历会话更多的代价更大的CPU利用率。
+     *选择间隔 i/o女士选择器线程将有效地运行在一个繁忙的循环。
+     * 所以如果设置超时时间小于1s的话，要相对应的设置setSelectInterval()才有效。
+     */
+
     static {
         try {
             IOReactorConfig.Builder iorcBuilder = IOReactorConfig.custom();
+            //iorcBuilder.setSelectInterval(1000);
             iorcBuilder.setConnectTimeout(connectionTimeOut);
             iorcBuilder.setSoTimeout(socketTimeOut);
             iorcBuilder.setIoThreadCount(ioThreadCount);

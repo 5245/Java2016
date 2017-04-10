@@ -50,9 +50,9 @@ public class HttpAsyncUtilTest {
     private static PoolingNHttpClientConnectionManager connectionManager      = null;
     private static CloseableHttpAsyncClient            httpAsyncClient;
 
-    private static int                                 connectionTimeOut      = 60000;
-    private static int                                 socketTimeOut          = 180000;
-    private static int                                 connReqTimeout         = 120000;
+    private static int                                 connectionTimeOut      = 1000;
+    private static int                                 socketTimeOut          = 1000;
+    private static int                                 connReqTimeout         = 1000;
     private static int                                 maxTotal               = 50;
     private static int                                 defaultMaxPerRoute     = 50;
     private static int                                 ioThreadCount          = Runtime.getRuntime().availableProcessors();
@@ -61,12 +61,15 @@ public class HttpAsyncUtilTest {
     static {
         initLog();
         try {
+            // Create I/O reactor configuration
             IOReactorConfig.Builder iorcBuilder = IOReactorConfig.custom();
+            iorcBuilder.setSelectInterval(50);
             iorcBuilder.setConnectTimeout(connectionTimeOut);
             iorcBuilder.setSoTimeout(socketTimeOut);
             iorcBuilder.setIoThreadCount(ioThreadCount);
             iorcBuilder.setSoKeepAlive(isKeepAlive);
             IOReactorConfig ioReactorConfig = iorcBuilder.build();
+            // Create a custom I/O reactort
             ConnectingIOReactor ioReactor = new DefaultConnectingIOReactor(ioReactorConfig);
 
             connectionManager = new PoolingNHttpClientConnectionManager(ioReactor);
@@ -265,6 +268,15 @@ public class HttpAsyncUtilTest {
             return null;
         }
         HttpPost httpPost = new HttpPost(url);
+
+        /*RequestConfig requestConfig = RequestConfig.copy(defaultRequestConfig)
+                .setSocketTimeout(5000)
+                .setConnectTimeout(5000)
+                .setConnectionRequestTimeout(5000)
+                .setProxy(new HttpHost("localhost", 8888))
+                .build();
+            httpget.setConfig(requestConfig);*/
+
         HttpResponse httpResponse;
         try {
             if (params != null) {
@@ -277,9 +289,21 @@ public class HttpAsyncUtilTest {
                 }
             }
             RequestConfig.Builder rcBuilder = RequestConfig.custom();
-            rcBuilder.setConnectionRequestTimeout(timeout == 0 ? connReqTimeout : timeout);
+            //            rcBuilder.setConnectTimeout(timeout == 0 ? connReqTimeout : timeout);
+            //            rcBuilder.setSocketTimeout(timeout == 0 ? connReqTimeout : timeout);
+            //            rcBuilder.setConnectionRequestTimeout(timeout == 0 ? connReqTimeout : timeout);
+
+            rcBuilder.setConnectTimeout(10);
+            rcBuilder.setSocketTimeout(10);
+            rcBuilder.setConnectionRequestTimeout(10);
+
             RequestConfig requestConfig = rcBuilder.build();
+
             httpPost.setConfig(requestConfig);
+
+            //            HttpClientContext ctx = new HttpClientContext();
+            //
+            //            ctx.setRequestConfig(requestConfig);
 
             httpResponse = (HttpResponse) httpAsyncClient.execute(httpPost, null).get();
             if (httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-12-23 16:36:07 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.dangdang.model.Province" table="province" catalog="wp4show" optimistic-lock="version">
+        <id name="provinceId" type="long">
+            <column name="province_id" />
+            <generator class="assigned" />
+        </id>
+        <property name="provinceName" type="string">
+            <column name="province_name" length="50" />
+        </property>
+    </class>
+</hibernate-mapping>
