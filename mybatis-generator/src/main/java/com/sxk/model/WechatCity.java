@@ -7,7 +7,7 @@ public class WechatCity {
 
     private Byte cityType;
 
-    private String name;
+    private String nationalName;
 
     private String parentCode;
 
@@ -32,7 +32,7 @@ public class WechatCity {
     }
 
     public void setNationalCode(String nationalCode) {
-        this.nationalCode = nationalCode == null ? null : nationalCode.trim();
+        this.nationalCode = nationalCode;
     }
 
     public Byte getCityType() {
@@ -43,12 +43,12 @@ public class WechatCity {
         this.cityType = cityType;
     }
 
-    public String getName() {
-        return name;
+    public String getNationalName() {
+        return nationalName;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setNationalName(String nationalName) {
+        this.nationalName = nationalName;
     }
 
     public String getParentCode() {
@@ -56,7 +56,7 @@ public class WechatCity {
     }
 
     public void setParentCode(String parentCode) {
-        this.parentCode = parentCode == null ? null : parentCode.trim();
+        this.parentCode = parentCode;
     }
 
     public String getZipCode() {
@@ -64,7 +64,7 @@ public class WechatCity {
     }
 
     public void setZipCode(String zipCode) {
-        this.zipCode = zipCode == null ? null : zipCode.trim();
+        this.zipCode = zipCode;
     }
 
     public Integer getProvinceId() {

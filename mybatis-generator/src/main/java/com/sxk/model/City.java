@@ -28,7 +28,7 @@ public class City {
     }
 
     public void setCityName(String cityName) {
-        this.cityName = cityName == null ? null : cityName.trim();
+        this.cityName = cityName;
     }
 
     public String getZipCode() {
@@ -36,7 +36,7 @@ public class City {
     }
 
     public void setZipCode(String zipCode) {
-        this.zipCode = zipCode == null ? null : zipCode.trim();
+        this.zipCode = zipCode;
     }
 
     public Long getProvinceId() {
@@ -52,7 +52,7 @@ public class City {
     }
 
     public void setCityNameEn(String cityNameEn) {
-        this.cityNameEn = cityNameEn == null ? null : cityNameEn.trim();
+        this.cityNameEn = cityNameEn;
     }
 
     public Short getIsHot() {

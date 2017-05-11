@@ -5,7 +5,7 @@
 	<properties resource="mybatis-generator.properties" />
 
 	<!-- 指定数据连接驱动jar地址 -->
-	<classPathEntry location="${classPath}" />
+	<classPathEntry location="./src/lib/mysql-connector-java-5.1.39-bin.jar" />
 
 	<!-- 一个数据库一个context -->
 	<context id="wp4show" targetRuntime="MyBatis3">
@@ -26,8 +26,8 @@
 		</javaTypeResolver>
 
 		<!-- 生成实体类地址 -->
-		<javaModelGenerator targetPackage="com.sxk.model"
-			targetProject="${project}">
+		<javaModelGenerator targetPackage="${modelTargetPackage}"
+			targetProject="./src/main/java">
 			<!-- 是否在当前路径下新加一层schema,eg：fase路径com.sxk.model， true:com.sxk.model.[schemaName] -->
 			<property name="enableSubPackages" value="false" />
 			<!-- 是否针对string类型的字段在set的时候进行trim调用 -->
@@ -35,12 +35,12 @@
 		</javaModelGenerator>
 
 		<!-- 生成mapxml文件 -->
-		<sqlMapGenerator targetPackage="com.sxk.dao.xml" targetProject="${project}">
+		<sqlMapGenerator targetPackage="${sqlMapperTargetPackage}" targetProject="./src/main/resources">
 			<property name="enableSubPackages" value="false" />
 		</sqlMapGenerator>
 
 		<!-- 生成mapxml对应client，也就是接口dao -->
-		<javaClientGenerator targetPackage="com.sxk.dao.mapper" targetProject="${project}" type="XMLMAPPER">
+		<javaClientGenerator targetPackage="${daoTargetPackage}" targetProject="./src/main/java" type="XMLMAPPER">
 			<property name="enableSubPackages" value="false" />
 		</javaClientGenerator>
 
