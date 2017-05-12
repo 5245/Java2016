@@ -2,7 +2,7 @@
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
 <generatorConfiguration>
 	<!-- 引入配置文件 -->
-	<properties resource="mybatis-generator.properties" />
+	<properties resource="mybatis-generator-flow.properties" />
 
 	<!-- 指定数据连接驱动jar地址 -->
 	<classPathEntry location="./src/lib/mysql-connector-java-5.1.39-bin.jar" />
@@ -61,10 +61,9 @@
 			targetProject="./src/main/java" type="XMLMAPPER">
 			<property name="enableSubPackages" value="false" />
 		</javaClientGenerator>
-
 		<!-- 配置表信息 -->
-		<table schema="${jdbc.user}" tableName="wechat_city"
-			domainObjectName="WechatCity" enableCountByExample="false"
+		<table schema="${jdbc.user}" tableName="sale_channel"
+			domainObjectName="SaleChannel" enableCountByExample="false"
 			enableUpdateByExample="false" enableDeleteByExample="false"
 			enableSelectByExample="false" selectByExampleQueryId="false">
 
@@ -72,17 +71,34 @@
 				是否生成 example类 -->
 
 			<!-- 忽略列，不生成bean 字段 -->
-			<ignoreColumn column="district_id_other" />
+			<!-- <ignoreColumn column="district_id_other" /> -->
 			<!-- 指定列的java数据类型 -->
-			<columnOverride column="district_id" jdbcType="VARCHAR" />
+			<!-- <columnOverride column="district_id" jdbcType="VARCHAR" /> -->
 
 		</table>
 
-		<table tableName="city" domainObjectName="City"
-			enableCountByExample="flase" enableUpdateByExample="false"
+		<table tableName="sale_channel_category" domainObjectName="SaleChannelCategory"
+			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
-			<columnRenamingRule searchString="sort" replaceString="" />
+		</table>
+		
+		<table tableName="purchaser" domainObjectName="Purchaser"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		
+		<table tableName="sys_admin" domainObjectName="SysAdmin"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		
+		<table tableName="order_info" domainObjectName="OrderInfo"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
 		</table>
 
 	</context>
