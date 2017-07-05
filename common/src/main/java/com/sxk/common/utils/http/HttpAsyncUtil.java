@@ -50,10 +50,13 @@ public class HttpAsyncUtil {
 
     // http thread manager
     private static PoolingNHttpClientConnectionManager connectionManager      = null;
-    private static CloseableHttpAsyncClient            httpAsyncClient;
 
+    private static CloseableHttpAsyncClient            httpAsyncClient;
+    //连接建立时间，三次握手完成时间，单位ms
     private static int                                 connectionTimeOut      = 1000;
+    //数据传输过程中数据包之间间隔的最大时间，单位ms
     private static int                                 socketTimeOut          = 1000;
+    //httpclient使用连接池来管理连接，这个时间就是从连接池获取连接的超时时间，单位ms
     private static int                                 connReqTimeout         = 1000;
     private static int                                 maxTotal               = 50;
     private static int                                 defaultMaxPerRoute     = 50;

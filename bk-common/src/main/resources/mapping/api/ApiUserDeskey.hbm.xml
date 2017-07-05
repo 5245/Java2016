@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.gewara.model.api.ApiUserDeskey" table="APIUSER_DESKEY" lazy="false">
+		<id name="partnerkey" type="string" column="PARTNERKEY">
+			<generator class="assigned" />
+		</id>
+		<property name="privatekey" type="string" column="PRIVATEKEY"/>
+		<property name="loginQry" type="string" column="LOGINURL"/>
+		<property name="updatetime" type="timestamp" column="UPDATETIME"/>
+		<property name="otherinfo" type="string" column="OTHERINFO"/>
+	</class>
+</hibernate-mapping>

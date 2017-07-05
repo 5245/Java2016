@@ -15,19 +15,30 @@
         <property name="hibernate.current_session_context_class">org.springframework.orm.hibernate5.SpringSessionContext</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.format.sql">true</property>
+        <property name="hibernate.hbm2ddl">create</property>
         <property name="hibernate.jdbc.batch_size">20</property>
         <property name="hibernate.search.autoregister_listeners">false</property>
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.use_sql_comments">false</property>
         <property name="hibernate.validator.apply_to_ddl">false</property>
+        <mapping resource="com/dangdang/model/WechatCity1230.hbm.xml" />
+        <mapping resource="com/dangdang/model/ZDistrict.hbm.xml" />
+        <mapping resource="com/dangdang/model/ZProvince.hbm.xml" />
         <mapping resource="com/dangdang/model/Province.hbm.xml" />
-        <mapping resource="com/dangdang/model/City.hbm.xml" />
-        <mapping resource="com/dangdang/model/WechatCity20161222.hbm.xml" />
-        <mapping resource="com/dangdang/model/District.hbm.xml" />
-        <mapping resource="com/dangdang/model/PassportDeliveryAddress.hbm.xml" />
-        <mapping resource="com/dangdang/model/WechatCityCopy1.hbm.xml" />
-        <mapping resource="com/dangdang/model/WechatCityCopy.hbm.xml" />
+        <mapping resource="com/dangdang/model/GwrProvince.hbm.xml" />
         <mapping resource="com/dangdang/model/WechatCity.hbm.xml" />
+        <mapping resource="com/dangdang/model/ZCity.hbm.xml" />
+        <mapping resource="com/dangdang/model/City.hbm.xml" />
+        <mapping resource="com/dangdang/model/WechatCity20170119.hbm.xml" />
+        <mapping resource="com/dangdang/model/GwrCounty.hbm.xml" />
+        <mapping resource="com/dangdang/model/Userdeliveryaddr0.hbm.xml" />
+        <mapping resource="com/dangdang/model/WechatCity20170208.hbm.xml" />
         <mapping resource="com/dangdang/model/ACity.hbm.xml" />
+        <mapping resource="com/dangdang/model/QqCity.hbm.xml" />
+        <mapping resource="com/dangdang/model/TencentQqAddress.hbm.xml" />
+        <mapping resource="com/dangdang/model/PassportDeliveryAddress.hbm.xml" />
+        <mapping resource="com/dangdang/model/WechatCity20161226.hbm.xml" />
+        <mapping resource="com/dangdang/model/GwrCity.hbm.xml" />
+        <mapping resource="com/dangdang/model/District.hbm.xml" />
     </session-factory>
 </hibernate-configuration>

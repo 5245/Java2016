@@ -12,9 +12,10 @@
 			<pattern>%date{ISO8601} %thread %logger %5p %m%n</pattern>
 			<charset>UTF-8</charset>
 		</encoder>
-		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+		 <!-- 过滤器定义日志级别 -->
+		<!-- <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
 			<level>INFO</level>
-		</filter>
+		</filter> -->
 	</appender>
 
 	<!-- AsyncAppender 异步日志 -->
@@ -28,10 +29,10 @@
 		<appender-ref ref="CONSOLE" />
 	</logger>
 
-	<logger name="org" additivity="false" level="INFO">
+    <logger name="org.apache.http.wire" level="INFO">
 		<appender-ref ref="CONSOLE" />
-	</logger>
-
+    </logger>
+    
 	<root level="INFO">
 		<appender-ref ref="ASYNC_console" />
 	</root>

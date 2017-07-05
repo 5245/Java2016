@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.gewara.model.user.Point" table="POINT" lazy="false">
+		<id name="id" type="long" column="RECORDID">
+			<generator class="org.hibernate.id.enhanced.SequenceStyleGenerator">
+			    <param name="optimizer">none</param>
+			    <param name="increment_size">1</param>
+			    <param name="sequence_name">action_sequence</param>
+			</generator>
+		</id>
+		<property name="memberid" type="long" column="TO_MEMBERID"/>
+		<property name="tag" type="string" column="TAG"/>
+		<property name="tagid" type="long" column="TAGID"/>
+		<property name="point" type="integer" column="POINTVALUE"/>
+		<property name="reason" type="string" column="REASON"/>
+		<property name="adminid" type="long" column="ADMINID"/>
+		<property name="addtime" type="timestamp" column="ADDTIME"/>
+		<property name="statflag" type="string" column="STAT_FLAG"/>
+	</class>
+</hibernate-mapping>

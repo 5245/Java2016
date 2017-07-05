@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-5-22 15:41:07 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.dangdang.model.GwrProvince" table="gwr_province" catalog="wp4show" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="provincecode" type="string">
+            <column name="provincecode" length="10" not-null="true" />
+        </property>
+        <property name="provincename" type="string">
+            <column name="provincename" length="50" />
+        </property>
+        <property name="provinceename" type="string">
+            <column name="provinceename" length="50" />
+        </property>
+        <property name="nationcode" type="string">
+            <column name="nationcode" length="10" />
+        </property>
+        <property name="nationname" type="string">
+            <column name="nationname" length="50" />
+        </property>
+        <property name="nationename" type="string">
+            <column name="nationename" length="50" />
+        </property>
+        <property name="continentcode" type="string">
+            <column name="continentcode" length="1" />
+        </property>
+        <property name="continentname" type="string">
+            <column name="continentname" length="20" />
+        </property>
+        <property name="continentename" type="string">
+            <column name="continentename" length="20" />
+        </property>
+        <property name="regionlevel" type="string">
+            <column name="regionlevel" length="2" />
+        </property>
+    </class>
+</hibernate-mapping>

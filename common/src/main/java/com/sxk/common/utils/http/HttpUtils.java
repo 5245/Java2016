@@ -88,6 +88,7 @@ public class HttpUtils {
         configurator.setContext(lc);
         try {
             configurator.doConfigure("src/main/resources/conf/logback.xml");
+            //configurator.doConfigure("src/main/resources/conf/logback4http.xml");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -123,7 +124,7 @@ public class HttpUtils {
         return null;
     }
 
-    private static HttpResponse get2Response(String url, Map<String, String> params, Map<String, String> headers, String charset, int timeout) {
+    public static HttpResponse get2Response(String url, Map<String, String> params, Map<String, String> headers, String charset, int timeout) {
         if (!verifyUrl(url)) {
             return null;
         }
@@ -396,6 +397,10 @@ public class HttpUtils {
         //            requestBase.releaseConnection();
         //            requestBase = null;
         //        }
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(HttpUtils.get("http://www.baidu.com"));
     }
 
 }

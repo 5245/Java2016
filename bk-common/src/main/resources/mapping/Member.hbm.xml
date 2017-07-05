@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.gewara.model.user.Member" table="MEMBER" lazy="false">
+		<id name="id" type="long" column="RECORDID">
+			<generator class="org.hibernate.id.enhanced.SequenceStyleGenerator">
+			    <param name="optimizer">none</param>
+			    <param name="increment_size">1</param>
+			    <param name="sequence_name">MEMBER_SEQUENCE</param>
+			</generator>
+		</id>
+		<property name="email" type="string" column="EMAIL"/>
+		<property name="password" type="string" column="PASSWORD"/>
+		<property name="nickname" type="string" column="NICKNAME"/>
+		<property name="mobile" type="string" column="MOBILE"/>
+		<property name="rejected" type="string" column="REJECTED"/>
+		<property name="bindStatus" type="string" column="BINDSTATUS"/>
+		<property name="prikey" type="string" column="PRIKEY" update="false"/>
+		<property name="needValid" type="string" column="NEEDVALID"/>
+		<property name="headpic" type="string" column="HEADPIC"/>
+		<property name="addtime" type="timestamp" column="ADDTIME"/>
+		<property name="ip" type="string" column="IP"/>
+	</class>
+</hibernate-mapping>

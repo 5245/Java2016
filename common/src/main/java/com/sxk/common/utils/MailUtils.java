@@ -39,7 +39,7 @@ public class MailUtils {
         public String            serverName;
         public Map<String, File> attachment = new HashMap<String, File>();
     }
-
+ 
     public static void sendSingle(Mail mail) {
         String to = mail.to;
         String[] arr = to.split(",");
