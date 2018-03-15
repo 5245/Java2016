@@ -1,4 +1,4 @@
-package com.dangdang.common;
+package com.sxk.common.utils.image;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -13,7 +13,6 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
-import org.apache.struts2.ServletActionContext;
 import org.junit.Test;
 
 import sun.misc.BASE64Decoder;
@@ -139,7 +138,9 @@ public class ZXingCodeUtil {
     @Test
     public static void QREncode() throws WriterException, IOException {
         String fileName = "zxing.png";
-        String filePath = ServletActionContext.getServletContext().getRealPath(fileName);
+        
+        //String filePath = ServletActionContext.getServletContext().getRealPath(fileName);
+        String filePath = null;
         JSONObject json = new JSONObject();
         json.put("zxing", "https://github.com/zxing/zxing/tree/zxing-3.2.0/javase/src/main/java/com/google/zxing");
         json.put("author", "shihy");
@@ -236,14 +237,14 @@ public class ZXingCodeUtil {
 
     public static void main(String[] args) {
 
-       /* String appid = "wx68c16799a0f0f989";
-        String callback = "http://ibangshou.cn/2017.php";
-        String text = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" //
-                + appid + "&redirect_uri=" + callback //
-                + "&response_type=code&scope=snsapi_base&state=1#wechat_redirect";*/
+        /* String appid = "wx68c16799a0f0f989";
+         String callback = "http://ibangshou.cn/2017.php";
+         String text = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" //
+                 + appid + "&redirect_uri=" + callback //
+                 + "&response_type=code&scope=snsapi_base&state=1#wechat_redirect";*/
 
         //String text="http://totocun.com?rand"+System.currentTimeMillis();
-        String text="http://totocun.com/Kfa/xiazai/0718.apk?rand"+System.currentTimeMillis();
+        String text = "http://totocun.com/Kfa/xiazai/0718.apk?rand" + System.currentTimeMillis();
         String imgPath = "D:\\003.jpg";
         // 益达无糖口香糖的条形码  
         String contents = "6923450657713";

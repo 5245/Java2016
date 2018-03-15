@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- For assistance related to logback-translator or configuration  -->
+<!-- files in general, please contact the logback user mailing list -->
+<!-- at http://www.qos.ch/mailman/listinfo/logback-user             -->
+<!--                                                                -->
+<!-- For professional support please see                            -->
+<!--    http://www.qos.ch/shop/products/professionalSupport         -->
+<!--                                                                -->
+<configuration>
+  <property name="LOG_HOME" value="/data/logs/weiying_usercenter" /> 
+  <property name="queueSize" value="512" />
+  <property name="maxHistory" value="168" />
+   
+  <appender name="db" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <File>${LOG_HOME}/db.log</File>
+    <Append>true</Append>
+    <encoder>
+      <pattern>%date{ISO8601} %thread %logger %M %5p %m%n</pattern>
+      <charset>UTF-8</charset>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${LOG_HOME}/db.log.%d{yyyy-MM-dd_HH}</fileNamePattern>
+      <maxHistory>${maxHistory}</maxHistory>
+    </rollingPolicy>
+  </appender>
+  
+  <appender name="api_user_info" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <File>${LOG_HOME}/api_user_info.log</File>
+    <Append>true</Append>
+    <encoder>
+      <pattern>%date{ISO8601} %thread %logger %5p %m%n</pattern>
+      <charset>UTF-8</charset>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${LOG_HOME}/api_user_info.log.%d{yyyy-MM-dd_HH}</fileNamePattern>
+      <maxHistory>${maxHistory}</maxHistory>
+    </rollingPolicy>
+  </appender>
+  <appender name="api_user_tag" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <File>${LOG_HOME}/api_user_tag.log</File>
+    <Append>true</Append>
+    <encoder>
+      <pattern>%date{ISO8601} %thread %logger %5p %m%n</pattern>
+      <charset>UTF-8</charset>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${LOG_HOME}/api_user_tag.log.%d{yyyy-MM-dd_HH}</fileNamePattern>
+      <maxHistory>${maxHistory}</maxHistory>
+    </rollingPolicy>
+  </appender>
+  <appender name="security" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <File>${LOG_HOME}/security.log</File>
+    <Append>true</Append>
+    <encoder>
+      <pattern>%date{ISO8601} %thread %logger %5p %m%n</pattern>
+      <charset>UTF-8</charset>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${LOG_HOME}/security.log.%d{yyyy-MM-dd_HH}</fileNamePattern>
+      <maxHistory>${maxHistory}</maxHistory>
+    </rollingPolicy>
+  </appender>
+  
+  <appender name="core" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <File>${LOG_HOME}/core.log</File>
+    <Append>true</Append>
+    <encoder>
+      <pattern>%date{ISO8601} %thread %logger %M %5p %m%n</pattern>
+      <charset>UTF-8</charset>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${LOG_HOME}/core.log.%d{yyyy-MM-dd_HH}</fileNamePattern>
+      <maxHistory>${maxHistory}</maxHistory>
+    </rollingPolicy>
+  </appender>
+  <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <Target>System.out</Target>
+    <encoder>
+      <pattern>%date{ISO8601} %thread %logger %M %5p %m%n</pattern>
+      <charset>UTF-8</charset>
+    </encoder>
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      <level>INFO</level>
+    </filter>
+  </appender>
+  <appender name="ERR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <Append>true</Append>
+    <File>${LOG_HOME}/error.log</File>
+    <encoder>
+      <pattern>%date{ISO8601} %thread %logger %M %5p %m%n</pattern>
+      <charset>UTF-8</charset>
+    </encoder>
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      <level>ERROR</level>
+    </filter>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${LOG_HOME}/error.log.%d{yyyy-MM-dd_HH}</fileNamePattern>
+      <maxHistory>${maxHistory}</maxHistory>
+    </rollingPolicy>
+  </appender>
+  <!-- rabbtimq消息队列 -->
+  <appender name="mqmsg" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <File>${LOG_HOME}/mqmsg.log</File>
+    <Append>true</Append>
+    <encoder>
+      <pattern>%date{ISO8601} %thread %loggers %5p %m%n</pattern>
+      <charset>UTF-8</charset>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${LOG_HOME}/mqmsg.log.%d{yyyy-MM-dd_HH}</fileNamePattern>
+      <maxHistory>${maxHistory}</maxHistory>
+    </rollingPolicy>
+  </appender>
+  <appender name="mqmsgerr" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <File>${LOG_HOME}/mqmsg_err.log</File>
+    <Append>true</Append>
+    <encoder>
+      <pattern>%date{ISO8601} %thread %loggers %5p %m%n</pattern>
+      <charset>UTF-8</charset>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${LOG_HOME}/mqmsg_err.log.%d{yyyy-MM-dd_HH}</fileNamePattern>
+      <maxHistory>${maxHistory}</maxHistory>
+    </rollingPolicy>
+  </appender>
+ 
+  <logger name="com.wepiao.user.common.dao.impl" level="INFO">
+    <appender-ref ref="db"/>
+  </logger>
+  <logger name="com.wepiao.user.common.handler.impl" level="INFO">
+    <appender-ref ref="core"/>
+  </logger>
+  <logger name="com.wepiao.admin.user.service" level="INFO">
+    <appender-ref ref="core"/>
+  </logger>
+  <logger name="com.wepiao.user.common.mq" level="INFO">
+    <appender-ref ref="core"/>
+  </logger>
+  <logger name="com.wepiao.user.common.util" level="INFO">
+    <appender-ref ref="core"/>
+  </logger>
+  <logger name="mqmsg" additivity="false" level="INFO">
+		<appender-ref ref="ASYNC_mqmsg" />
+  </logger>
+  <logger name="mqmsgerr" additivity="false" level="INFO">
+		<appender-ref ref="ASYNC_mqmsgerr" />
+  </logger>
+  
+  <appender name="ASYNC_api_user_info" class="ch.qos.logback.classic.AsyncAppender">
+		<discardingThreshold>0</discardingThreshold>
+		<queueSize>${queueSize}</queueSize>
+		<appender-ref ref="api_user_info" />
+  </appender>
+  <appender name="ASYNC_api_user_tag" class="ch.qos.logback.classic.AsyncAppender">
+		<discardingThreshold>0</discardingThreshold>
+		<queueSize>${queueSize}</queueSize>
+		<appender-ref ref="api_user_tag" />
+  </appender>
+  <appender name="ASYNC_security" class="ch.qos.logback.classic.AsyncAppender">
+		<discardingThreshold>0</discardingThreshold>
+		<queueSize>${queueSize}</queueSize>
+		<appender-ref ref="security" />
+  </appender>
+  <appender name="ASYNC_mqmsg" class="ch.qos.logback.classic.AsyncAppender">
+		<discardingThreshold>0</discardingThreshold>
+		<queueSize>${queueSize}</queueSize>
+		<appender-ref ref="mqmsg" />
+  </appender>
+  <appender name="ASYNC_mqmsgerr" class="ch.qos.logback.classic.AsyncAppender">
+		<discardingThreshold>0</discardingThreshold>
+		<queueSize>${queueSize}</queueSize>
+		<appender-ref ref="mqmsgerr" />
+  </appender>
+  
+  <logger name="api_user_info" additivity="false" level="INFO">
+		<appender-ref ref="ASYNC_api_user_info" />
+  </logger>
+  <logger name="api_user_tag" additivity="false" level="INFO">
+		<appender-ref ref="ASYNC_api_user_tag" />
+  </logger>
+  <logger name="security" additivity="false" level="WARN">
+		<appender-ref ref="ASYNC_security" />
+  </logger>
+  <logger name="mqmsg" additivity="false" level="INFO">
+		<appender-ref ref="ASYNC_mqmsg" />
+  </logger>
+  <logger name="mqmsgerr" additivity="false" level="INFO">
+		<appender-ref ref="ASYNC_mqmsgerr" />
+  </logger>
+  
+  <root level="INFO">
+    <appender-ref ref="CONSOLE"/>
+    <appender-ref ref="ERR"/>
+  </root>
+</configuration>

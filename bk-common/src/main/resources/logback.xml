@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+	<property name="LOG_HOME" value="/data/logs/cos" />
+	<property name="queueSize" value="512" />
+	<property name="maxHistory" value="24" />
+
+	<appender name="db_info"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${LOG_HOME}/db_info.log</File>
+		<Append>true</Append>
+		<encoder>
+			<pattern>%date{ISO8601} %thread %logger %5p %m%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_HOME}/db_info.log.%d{yyyy-MM-dd_HH}
+			</fileNamePattern>
+			<maxHistory>${maxHistory}</maxHistory>
+		</rollingPolicy>
+	</appender>
+
+	<appender name="dbworker"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${LOG_HOME}/dbworker.log</File>
+		<Append>true</Append>
+		<encoder>
+			<pattern>%date{ISO8601} %thread %logger %5p %m%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_HOME}/dbworker.log.%d{yyyy-MM-dd_HH}
+			</fileNamePattern>
+			<maxHistory>${maxHistory}</maxHistory>
+		</rollingPolicy>
+	</appender>
+
+
+	<appender name="ERR"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<Append>true</Append>
+		<File>${LOG_HOME}/error.log</File>
+		<encoder>
+			<pattern>%date{ISO8601} %thread %logger %M %5p %m%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>ERROR</level>
+		</filter>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_HOME}/error.log.%d{yyyy-MM-dd_HH}
+			</fileNamePattern>
+			<maxHistory>${maxHistory}</maxHistory>
+		</rollingPolicy>
+	</appender>
+
+
+	<appender name="ASYNC_db_info" class="ch.qos.logback.classic.AsyncAppender">
+		<discardingThreshold>0</discardingThreshold>
+		<queueSize>${queueSize}</queueSize>
+		<appender-ref ref="db_info" />
+	</appender>
+	
+	<appender name="ASYNC_dbworker" class="ch.qos.logback.classic.AsyncAppender">
+		<discardingThreshold>0</discardingThreshold>
+		<queueSize>${queueSize}</queueSize>
+		<appender-ref ref="dbworker" />
+	</appender>
+
+	<logger name="db_info" additivity="false" level="INFO">
+		<appender-ref ref="ASYNC_db_info" />
+	</logger>
+	<logger name="dbworker" additivity="false" level="INFO">
+		<appender-ref ref="ASYNC_dbworker" />
+	</logger>
+
+	<root level="INFO">
+		<appender-ref ref="ERR" />
+	</root>
+</configuration>

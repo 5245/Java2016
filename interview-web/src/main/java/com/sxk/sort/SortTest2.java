@@ -1,26 +1,19 @@
 package com.sxk.sort;
 
-public class SortTest {
+public class SortTest2 {
     /**
      * 冒泡排序
      * @param a
      */
     public static void bubbleSort(Comparable[] a) {
-        int j, flag;
-        Comparable temp;
+        Comparable tmp;
         for (int i = 0; i < a.length; i++) {
-            flag = 0;
-            for (j = 1; j < a.length - i; j++) {
+            for (int j = 1; j < a.length - i; j++) {
                 if (a[j].compareTo(a[j - 1]) < 0) {
-                    temp = a[j];
+                    tmp = a[j];
                     a[j] = a[j - 1];
-                    a[j - 1] = temp;
-                    flag = 1;
+                    a[j - 1] = tmp;
                 }
-            }
-            // 如果没有交换，代表已经排序完毕，直接返回
-            if (flag == 0) {
-                return;
             }
         }
     }
@@ -33,29 +26,12 @@ public class SortTest {
      *
      */
     public static void insertionSort(Comparable[] a) {
-        int length = a.length;
-        Comparable temp;
-        for (int i = 1; i < length; i++) {
-            for (int j = i; j > 0 && a[j].compareTo(a[j - 1]) < 0; j--) {
-                temp = a[j];
-                a[j] = a[j - 1];
-                a[j - 1] = temp;
-            }
-        }
+
     }
 
     // 对实现Comparable的类型进行排序，先将大的元素都向右移动，减少一半交换次数 
     public static void insertionSort2(Comparable[] a) {
-        int length = a.length;
-        Comparable temp;
-        int j;
-        for (int i = 1; i < length; i++) {
-            temp = a[i];
-            for (j = i; j > 0 && temp.compareTo(a[j - 1]) < 0; j--) {
-                a[j] = a[j - 1];
-            }
-            a[j] = temp;
-        }
+
     }
 
     /********************************************************/
@@ -147,13 +123,9 @@ public class SortTest {
 
     /********************************************************/
 
+    //自顶向下的归并排序
     private static Comparable[] aux; // 自顶向下 
 
-    /**
-     * 自顶向下的归并排序
-     * @param a
-     *
-     */
     public static void mergeSort(Comparable[] a) {
         aux = new Comparable[a.length];
         mergeSort(a, 0, a.length - 1);
@@ -187,13 +159,9 @@ public class SortTest {
         }
     }
 
+    //自底向上的归并排序
     private static Comparable[] aux2; // 自底向上
 
-    /**
-     * 自底向上的归并排序
-     * @param a
-     *
-     */
     public static void mergeSort2(Comparable[] a) {
         int length = a.length;
         aux2 = new Comparable[length];
@@ -272,13 +240,14 @@ public class SortTest {
 
     public static void main(String[] args) {
         Integer[] a = new Integer[] { 5, 3, 9, 55, 4, 1 };
-        SortTest.bubbleSort(a);
-        //SortTest.insertionSort(a);
-        //SortTest.insertionSort2(a);
-        //SortTest.selectionSort1(a);
-        //SortTest.shellSort(a);
-        //SortTest.heapSort(a);
-        //SortTest.quickSort(a);
+        SortTest2.bubbleSort(a);
+        //SortTest2.insertionSort(a);
+        //SortTest2.insertionSort2(a);
+        //SortTest2.selectionSort1(a);
+        //SortTest2.shellSort(a);
+        //SortTest2.heapSort(a);
+        //SortTest2.quickSort(a);
+
         for (Integer s : a) {
             System.out.println(s);
         }

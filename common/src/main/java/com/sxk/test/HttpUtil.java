@@ -31,8 +31,8 @@ import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
 import com.alibaba.fastjson.JSONObject;
-import com.wepiao.db.enumeration.Constants;
 
 /**
  * @description  http pool util 
@@ -43,7 +43,7 @@ import com.wepiao.db.enumeration.Constants;
 public class HttpUtil {
 
     private final Logger                       logger                 = LoggerFactory.getLogger(HttpUtil.class);
-    private final Logger                       logUserInfo            = LoggerFactory.getLogger(Constants.LOG_USER_INFO);
+    private final Logger                       logUserInfo            = LoggerFactory.getLogger("Constants.LOG_USER_INFO");
     private final String                       logBody                = "HTTP Body:{}";
 
     private final String                       DEFAULT_CHARSET        = "UTF-8";
@@ -385,11 +385,17 @@ public class HttpUtil {
         logMsg.put("method", method);
         logMsg.put("requestParams", params);
         logMsg.put("requestHeaders", headers);
-        logMsg.put("requestTime", DateUtils.format(new Date(startMillis)));
+        //logMsg.put("requestTime", DateUtils.format(new Date(startMillis)));
         logMsg.put("responseBody", respBody);
         long endMillis = System.currentTimeMillis();
         logMsg.put("runtime", endMillis - startMillis);
         logUserInfo.info(logBody, logMsg);
+    }
+
+    public static void main(String[] args) {
+
+       String responseMsg = HttpUtil.getInstance().post("http://172.23.4.127:8083/g/ow", "{}",null,"UTF-8");
+        System.out.println(responseMsg);
     }
 
 }

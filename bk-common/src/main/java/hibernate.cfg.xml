@@ -28,6 +28,7 @@
         <mapping resource="com/dangdang/model/GwrProvince.hbm.xml" />
         <mapping resource="com/dangdang/model/WechatCity.hbm.xml" />
         <mapping resource="com/dangdang/model/ZCity.hbm.xml" />
+        <mapping resource="com/dangdang/model/OrderCertImage.hbm.xml" />
         <mapping resource="com/dangdang/model/City.hbm.xml" />
         <mapping resource="com/dangdang/model/WechatCity20170119.hbm.xml" />
         <mapping resource="com/dangdang/model/GwrCounty.hbm.xml" />
@@ -36,7 +37,9 @@
         <mapping resource="com/dangdang/model/ACity.hbm.xml" />
         <mapping resource="com/dangdang/model/QqCity.hbm.xml" />
         <mapping resource="com/dangdang/model/TencentQqAddress.hbm.xml" />
+        <mapping resource="com/dangdang/model/WechatCity0714.hbm.xml" />
         <mapping resource="com/dangdang/model/PassportDeliveryAddress.hbm.xml" />
+        <mapping resource="com/dangdang/model/Qyer.hbm.xml" />
         <mapping resource="com/dangdang/model/WechatCity20161226.hbm.xml" />
         <mapping resource="com/dangdang/model/GwrCity.hbm.xml" />
         <mapping resource="com/dangdang/model/District.hbm.xml" />
