@@ -5,3 +5,9 @@
 .externalToolBuilders
 .gitreview
 .classpath
+
+# Intellij
+.idea
+.iml
+
+.gradle/**

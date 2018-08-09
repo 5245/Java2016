@@ -12,6 +12,6 @@ public class FastJUtils implements IJSON {
     @Override
     public <T> T str2Obj(String str, T t) {
         
-        return JSON.toJSON
+        return JSON.parseObject(str,t.getClass());
     }
 }
