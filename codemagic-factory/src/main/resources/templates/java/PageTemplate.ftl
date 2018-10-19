@@ -5,7 +5,6 @@ import io.swagger.annotations.ApiModelProperty;
 import td.enterprise.dmp.common.dao.page.BasePage;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.hibernate.validator.constraints.NotEmpty;
 
 #foreach($importClasses in $!{entityImportClasses})
 import ${importClasses};

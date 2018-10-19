@@ -25,26 +25,44 @@ public class CodeUtil {
 //        entityPackage = "rfm";
 //        DbCodeGenerateFactory.codeGenerate(codeGeneratePath, tableName, codeName, entityPackage, FtlDef.KEY_TYPE_02);
 
-        String tableName = "rfm_label";
-        String codeName = "rfm_label";
-        String entityPackage = "rfm";
+//        String tableName = "crowd";
+//        String codeName = "crowd";
+//        String entityPackage = "crowd";
+//        DbCodeGenerateFactory.codeGenerate(codeGeneratePath, tableName, codeName, entityPackage, FtlDef.KEY_TYPE_02);
+
+        String tableName = "crowd_condition";
+        String codeName = "crowd_condition";
+        String entityPackage = "crowd";
         DbCodeGenerateFactory.codeGenerate(codeGeneratePath, tableName, codeName, entityPackage, FtlDef.KEY_TYPE_02);
 
-        tableName = "rfm_life_cycle";
-        codeName = "rfm_life_cycle";
-        entityPackage = "rfm";
-        DbCodeGenerateFactory.codeGenerate(codeGeneratePath, tableName, codeName, entityPackage, FtlDef.KEY_TYPE_02);
+//        tableName = "crowd_strategy";
+//        codeName = "crowd_strategy";
+//        entityPackage = "crowd";
+//        DbCodeGenerateFactory.codeGenerate(codeGeneratePath, tableName, codeName, entityPackage, FtlDef.KEY_TYPE_02);
 
-        tableName = "rfm_monetary";
-        codeName = "rfm_monetary";
-        entityPackage = "rfm";
-        DbCodeGenerateFactory.codeGenerate(codeGeneratePath, tableName, codeName, entityPackage, FtlDef.KEY_TYPE_02);
+        if(1==1){
+            return;
+        }
+//        String tableName = "rfm_label";
+//        String codeName = "rfm_label";
+//        String entityPackage = "rfm";
+//        DbCodeGenerateFactory.codeGenerate(codeGeneratePath, tableName, codeName, entityPackage, FtlDef.KEY_TYPE_02);
 
-
-        tableName = "rfm_score";
-        codeName = "rfm_score";
-        entityPackage = "rfm";
-        DbCodeGenerateFactory.codeGenerate(codeGeneratePath, tableName, codeName, entityPackage, FtlDef.KEY_TYPE_02);
+//        tableName = "rfm_life_cycle";
+//        codeName = "rfm_life_cycle";
+//        entityPackage = "rfm";
+//        DbCodeGenerateFactory.codeGenerate(codeGeneratePath, tableName, codeName, entityPackage, FtlDef.KEY_TYPE_02);
+//
+//        tableName = "rfm_monetary";
+//        codeName = "rfm_monetary";
+//        entityPackage = "rfm";
+//        DbCodeGenerateFactory.codeGenerate(codeGeneratePath, tableName, codeName, entityPackage, FtlDef.KEY_TYPE_02);
+//
+//
+//        tableName = "rfm_score";
+//        codeName = "rfm_score";
+//        entityPackage = "rfm";
+//        DbCodeGenerateFactory.codeGenerate(codeGeneratePath, tableName, codeName, entityPackage, FtlDef.KEY_TYPE_02);
 
     }
 }

@@ -5,7 +5,6 @@ import io.swagger.annotations.ApiModelProperty;
 import td.enterprise.dmp.common.dao.page.BasePage;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.hibernate.validator.constraints.NotEmpty;
 
 #foreach($importClasses in $!{entityImportClasses})
 import ${importClasses};
@@ -24,7 +23,8 @@ import lombok.Data;
 public class ${className}Response {
 
 #foreach($po in $!{columnDatas})
-#if(${po.dataName} != 'updateTime' && ${po.dataName} != 'createTime')
+#if(${po.dataName} != 'updateTime' && ${po.dataName} != 'createTime'
+&& ${po.dataName} != 'creator' && ${po.dataName} != 'createBy' && ${po.dataName} != 'updateBy')
   @ApiModelProperty(value = "")
   private ${po.shortDataType} ${po.dataName};
 #end

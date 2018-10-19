@@ -3,6 +3,7 @@ package ${dtoPackage}.dto.${entityPackage};
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 #foreach($importClasses in $!{entityImportClasses})
+import javax.validation.constraints.NotEmpty;
 import ${importClasses};
 #end
 import lombok.Data;
@@ -18,7 +19,8 @@ import lombok.Data;
 public class ${className}Request {
 	
 #foreach($po in $!{columnDatas})
-#if(${po.dataName} != 'updateTime' && ${po.dataName} != 'createTime')
+#if(${po.dataName} != 'updateTime' && ${po.dataName} != 'createTime'
+&& ${po.dataName} != 'creator' && ${po.dataName} != 'createBy' && ${po.dataName} != 'updateBy')
   @ApiModelProperty(value = "")
   private ${po.shortDataType} ${po.dataName};
 #end

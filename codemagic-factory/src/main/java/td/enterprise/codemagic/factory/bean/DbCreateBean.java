@@ -275,12 +275,13 @@ public class DbCreateBean {
 		if (dataType.contains("char") || dataType.contains("text"))
 			dataType = "java.lang.String";
 		else if (dataType.contains("int")){
-			if(dataType.equals("tinyint")) {
-				dataType = "java.lang.Boolean";
-			} else {
-				dataType = "java.lang.Integer";
-			}			
-		}			
+			dataType = "java.lang.Integer";
+//			if(dataType.equals("tinyint")) {
+//				dataType = "java.lang.Boolean";
+//			} else {
+//				dataType = "java.lang.Integer";
+//			}
+		}
 		else if (dataType.contains("float"))
 			dataType = "java.lang.Float";
 		else if (dataType.contains("double"))
@@ -351,6 +352,29 @@ public class DbCreateBean {
 		return formateName(nameStr.toLowerCase());
 	}
 
+    public String getURLPathName(String name) {
+        String split[] = name.split("_");
+        String nameStr = name;
+        if (CodeResourceUtil.TABLE_PREFIX.contains(split[0])) {
+            nameStr = split[1];
+            for (int i = 2; i < split.length; i++) {
+                nameStr += "_" + split[i];
+            }
+        }
+        String urlPath=null;
+        split = nameStr.toLowerCase().split("_");
+        if(split.length==1){
+            urlPath=split[0];
+        }else {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < split.length; i++) {
+                sb.append("/" + split[i]);
+            }
+            urlPath=sb.toString().replaceFirst("/","");
+        }
+        return urlPath;
+    }
+
 	public String formateName(String name) {
 		if (name.contains("_")) {
 			name = name.toLowerCase();
@@ -359,6 +383,7 @@ public class DbCreateBean {
 		if (split.length > 1) {
 			StringBuffer sb = new StringBuffer();
 			for (int i = 0; i < split.length; i++) {
+
 				String tempTableName = (new StringBuilder(String.valueOf(split[i].substring(0, 1).toUpperCase()))).append(
 						split[i].substring(1, split[i].length())).toString();
 				sb.append(tempTableName);

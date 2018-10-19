@@ -30,7 +30,7 @@ import ${dtoPackage}.dto.${entityPackage}.${className}ListRequest;
  */
 @Slf4j
 @RestController
-@RequestMapping("/${entityPackage}")
+@RequestMapping("/${urlPath}")
 @Api(tags = {"${lowerName}"}, description = "${lowerName}")
 public class ${className}Controller extends BaseController{
 
@@ -38,14 +38,14 @@ public class ${className}Controller extends BaseController{
   private ${className}Service ${lowerName}Service;
 
   @ApiOperation(value = "根据主键查询")
-  @GetMapping(value="/${lowerCaseName}/{${lowerName}Id}")
+  @GetMapping(value="/{${lowerName}Id}")
   @ResponseBody
   public ${className} find(@PathVariable String ${lowerName}Id) throws Exception{
     ${className} data = ${lowerName}Service.selectByPrimaryKey(${lowerName}Id);
     return data;
   }
   @ApiOperation(value = "新增")
-  @PostMapping(value = "/${lowerCaseName}")
+  @PostMapping()
   @ResponseBody
   public void create(@RequestBody ${className}Request ${lowerName}Req) throws Exception{
     ${className} ${lowerName}=new ${className}();
@@ -53,7 +53,7 @@ public class ${className}Controller extends BaseController{
     ${lowerName}Service.insert(${lowerName});
   }
   @ApiOperation(value = "更新")
-  @PutMapping(value="/${lowerCaseName}/{${lowerName}Id}")
+  @PutMapping(value="/{${lowerName}Id}")
   @ResponseBody
   public void update(@RequestBody ${className}Request ${lowerName}Req) throws Exception{
     ${className} ${lowerName}=new ${className}();
@@ -61,15 +61,15 @@ public class ${className}Controller extends BaseController{
     ${lowerName}Service.updateByPrimaryKeySelective(${lowerName});
   }
   @ApiOperation(value = "根据主键删除")
-  @DeleteMapping(value="/${lowerCaseName}/{${lowerName}Id}")
+  @DeleteMapping(value="/{${lowerName}Id}")
   @ResponseBody
   public void delete(@PathVariable String ${lowerName}Id) throws Exception{
     ${lowerName}Service.deleteByPrimaryKey(${lowerName}Id);
   }
   @ApiOperation(value = "查询列表")
-  @GetMapping(value = "/${lowerCaseName}")
+  @PostMapping(value = "/list")
   @ResponseBody
-  public RetGrid<${className}Response> query(${className}ListRequest page) throws Exception {
+  public RetGrid<${className}Response> query(@RequestBody ${className}ListRequest page) throws Exception {
     List<${className}> data = ${lowerName}Service.queryByList(page);
     List<${className}Response> rows = data.stream().map(
       ${lowerName} -> BeanUtil.copyPropertiesDest(new ${className}Response(), ${lowerName}))

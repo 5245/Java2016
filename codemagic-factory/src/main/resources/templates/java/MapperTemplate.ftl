@@ -18,10 +18,11 @@
     where 1=1
     <trim suffixOverrides="," >
 #foreach($item in $!{columnDatas})
-  	#set($testStr = $!item.dataName + " != null and " + $!item.dataName + " != ''")
-	#if($!item.dataType == 'String')
-		#set($testStr = $!testStr + " and " + $!item.columnName + " != ''")
- 	#end
+#if($!item.dataType == 'java.lang.String')
+#set($testStr = $!item.dataName + " != null and " + $!item.dataName + " != ''")
+#else
+#set($testStr = $!item.dataName + " != null")
+#end
       <if test="$!testStr" >
         and $!item.columnName =  #{$!item.dataName}
 	  </if>

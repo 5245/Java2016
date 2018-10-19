@@ -44,12 +44,16 @@ public class DbCodeGenerateFactory {
         DbCreateBean createBean = new DbCreateBean();
         createBean.setMysqlInfo(url, username, passWord);
         String className = createBean.formateClassName(tableName);
+        String urlPath = createBean.getURLPathName(tableName);
         String lowerName = (new StringBuilder(String.valueOf(className.substring(0, 1).toLowerCase()))).append(className.substring(1, className.length()))
                 .toString();
         String lowerCaseName = className.toLowerCase();
         if (lowerCaseName.contains(entityPackage.toLowerCase())) {
             lowerCaseName = lowerCaseName.replace(entityPackage.toLowerCase(), "");
         }
+//        if (urlPath.contains(entityPackage.toLowerCase())) {
+//            urlPath = urlPath.replace(entityPackage.toLowerCase(), "");
+//        }
         //D:/git/td/codeTest/dmp-core
         String coreProjectPath = codeGeneratePath + "/" + CodeResourceUtil.CORE_PROJECT;
         String restProjectPath = codeGeneratePath + "/" + CodeResourceUtil.REST_PROJECT;
@@ -118,6 +122,7 @@ public class DbCodeGenerateFactory {
         VelocityContext context = new VelocityContext();
         context.put("className", className);
         context.put("lowerName", lowerName);
+        context.put("urlPath", urlPath);
         context.put("codeName", codeName);
         context.put("tableName", tableName);
         context.put("bussPackage", core_package);
